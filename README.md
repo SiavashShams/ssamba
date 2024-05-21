@@ -17,7 +17,7 @@ pip install -r requirements.txt
 
 ![architecture](figures/ssamba.png)
 
-### Pretrained Model Weights
+## Pretrained Model Weights
 
 The pretrained model weights for our SSAMBA model in sizes (base, small, and tiny) for different number of masked patches (400, 300, 250) can be found at:
 
