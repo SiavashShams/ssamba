@@ -16,7 +16,6 @@ pip install -r requirements.txt
 ## Architecture
 
 ![architecture](figures/ssamba.png)
-https://arxiv.org/abs/2110.09784
 
 ## License
 The license for borrowed code can be found in [LICENSE](https://github.com/SiavashShams/ssamba/blob/main/LICENSE) file. 
