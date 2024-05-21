@@ -1,0 +1,15 @@
+causal_conv1d==1.2.0.post2
+einops==0.8.0
+interfaces==0.0.4
+ipython==8.24.0
+mamba_ssm==1.2.0.post1
+matplotlib==3.6.2
+model_factory==0.0.8
+numpy==1.23.4
+s3prl==0.4.15
+scikit_learn==1.5.0
+scipy==1.7.3
+timm==1.0.3
+torch==2.2.2
+torchaudio==2.2.2
+wget==3.2
