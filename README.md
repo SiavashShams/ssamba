@@ -13,4 +13,7 @@ cd ssamba
 pip install -r requirements.txt
 ```
 
+## Architecture
+
+![architecture](figures/ssamba.png)
 
