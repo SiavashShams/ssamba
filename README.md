@@ -23,7 +23,7 @@ pip install -r requirements.txt
 ![architecture](figures/ssamba.png)
 
 ## Efficiency Comparison
-
+SSAMBA is approximately 92.7\% faster in batch inference speed and 95.4\% more memory-efficient than SSAST for the tiny model size with an input token size of 22k.
 <p align="center">
   <img src="figures/inference_time_b4.png" alt="Models Inference Speed" width="45%" />
   <img src="figures/gpu_memory_b4.png" alt="Models GPU Memory" width="45%" />
