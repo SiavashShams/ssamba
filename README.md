@@ -13,7 +13,7 @@ This repository contains the official implementation (in PyTorch) of the the pap
 To install the necessary dependencies, you can use the following commands:
 
 ```bash
-git clone https://github.com/yourusername/ssamba.git
+git clone https://github.com/SiavashShams/ssamba.git
 cd ssamba
 pip install -r requirements.txt
 ```
