@@ -22,6 +22,13 @@ pip install -r requirements.txt
 
 ![architecture](figures/ssamba.png)
 
+## Efficiency Comparison
+
+<p align="center">
+  <img src="figures/inference_time_b4.png" alt="Models Inference Speed" width="45%" />
+  <img src="figures/gpu_memory_b4.png" alt="Models GPU Memory" width="45%" />
+</p>
+
 ## Pretrained Model Weights
 
 The pretrained model weights for our SSAMBA model in sizes (base, small, and tiny) for different number of masked patches (400, 300, 250) can be found at:
