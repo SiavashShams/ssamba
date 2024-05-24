@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=yuangong
+#SBATCH --job-name=amba_sid
 #SBATCH --gres=gpu:a40:1         # Request an A40 GPU
 #SBATCH --cpus-per-task=12        # Number of CPUs
 #SBATCH --mem=32G                # Amount of memory
