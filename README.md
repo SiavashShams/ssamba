@@ -64,7 +64,7 @@ To finetune the pretrained SSAMBA on the balanced Audioset or ESC-50 datasets, f
      ```
    - For ESC-50:
      ```bash
-     cd src/finetune/esc
+     cd src/finetune/esc50
      ```
 
 2. **Adjust the paths and hyperparameters:**
