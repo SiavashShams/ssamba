@@ -92,6 +92,47 @@ To finetune the pretrained SSAMBA on the balanced Audioset or ESC-50 datasets, f
 
 Make sure to monitor the jobs and adjust any parameters as needed to suit your specific requirements and hardware configuration.
 
+### VoxCeleb 
+
+### Step 1: Install the SUPERB Package
+
+1. **Clone the SUPERB repository**:
+   ```bash
+   git clone https://github.com/s3prl/s3prl.git
+   ```
+
+2. **Navigate to the s3prl directory**:
+   ```bash
+   cd s3prl
+   ```
+
+3. **Install the package**:
+   ```bash
+   pip install -e ./
+   ```
+
+### Step 2: Prepare the Fine-Tuning Scripts
+
+1. **Copy our files**:
+   - Copy the files from `src/finetune/voxceleb1/ssast` to `s3prl/s3prl/upstream/ssast`.
+
+### Step 3: Adjust Paths and Specify Models
+
+1. **Edit the `run_sid.sh` file**:
+   - Adjust the paths in the `run_sid.sh` file to point to the correct directories for your dataset and model.
+
+2. **Specify models in `submit_jobs_amba.sh`**:
+   - Edit the `submit_jobs_amba.sh` script to specify the models you want to fine-tune.
+
+### Step 4: Run the Fine-Tuning Script
+
+1. **Execute the `submit_jobs_amba.sh` script**:
+   - In the terminal, navigate to the directory containing `submit_jobs_amba.sh` and run:
+     ```bash
+     ./submit_jobs_amba.sh
+     ```
+
+
 
 ## License
 The license for borrowed code can be found in [LICENSE](https://github.com/SiavashShams/ssamba/blob/main/LICENSE) file. 
