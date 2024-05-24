@@ -51,6 +51,47 @@ The pretrained model weights for our SSAMBA model in sizes (base, small, and tin
 
 [Pretrained Model Weights](https://drive.google.com/drive/u/1/folders/1E1gf5SxdSByDJ16_WQvzTKn8lIoYtZiX)
 
+## Finetuning
+
+### Audioset_20k and ESC-50
+
+To finetune the pretrained SSAMBA on the balanced Audioset or ESC-50 datasets, follow these steps:
+
+1. **Navigate to the finetuning directory:**
+   - For Audioset:
+     ```bash
+     cd src/finetune/audioset
+     ```
+   - For ESC-50:
+     ```bash
+     cd src/finetune/esc
+     ```
+
+2. **Adjust the paths and hyperparameters:**
+   Edit `run_as_amba.sh` and `run_esc_patch_amba.sh`. Adjust the paths and hyperparameters as needed for your dataset.
+
+3. **Configure SLURM job submission (if using SLURM):**
+   Add the models you want to finetune to `submit_jobs.sh`:
+   ```bash
+   #!/bin/bash
+
+   # Array of pre-trained models
+   declare -a models=("ssamba_tiny_400")
+
+   # Submit a job for each model
+   for model in "${models[@]}"; do
+       sbatch run_as_amba.sh $model
+   done
+   ```
+
+4. **Run the job submission script:**
+   Execute the `submit_jobs.sh` script in the terminal to start the finetuning process:
+   ```bash
+   ./submit_jobs.sh
+   ```
+
+Make sure to monitor the jobs and adjust any parameters as needed to suit your specific requirements and hardware configuration.
+
 
 ## License
 The license for borrowed code can be found in [LICENSE](https://github.com/SiavashShams/ssamba/blob/main/LICENSE) file. 
