@@ -1,5 +1,8 @@
 # SSAMBA: Self-Supervised Audio Mamba
 
+![icon](figures/amba.png)
+
+
 ⚠️ **Under Construction** ⚠️
 
 We will add recipes for fine-tuning on more datasets later. 🛠️ Stay tuned!!!
