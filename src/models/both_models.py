@@ -278,6 +278,59 @@ class AMBAModel(nn.Module):
     def gen_maskid_frame(self, sequence_len=512, mask_size=100):
         mask_id = random.sample(range(0, sequence_len), mask_size)
         return torch.tensor(mask_id)
+    
+    def finetuningavgtok_1sec(self, x):
+        B = x.shape[0]
+        x = self.v.patch_embed(x)
+        if self.cls_token_num == 2:
+            cls_tokens = self.v.cls_token.expand(B, -1, -1)
+            dist_token = self.v.dist_token.expand(B, -1, -1)
+            x = torch.cat((cls_tokens, dist_token, x), dim=1)
+        else:
+            cls_tokens = self.v.cls_token.expand(B, -1, -1)
+            x = torch.cat((cls_tokens, x), dim=1)
+        x = x + self.v.pos_embed
+        x = self.v.pos_drop(x)
+        
+        # mamba impl
+        residual = None
+        hidden_states = x
+        token_position = 0
+        if not self.v.if_bidirectional:
+            for layer in self.v.layers:
+                hidden_states, residual = layer(hidden_states, residual)
+        else:
+            for i in range(len(self.v.layers) // 2):
+                hidden_states_f, residual_f = self.v.layers[i * 2](hidden_states, residual)
+                hidden_states_b, residual_b = self.v.layers[i * 2 + 1](hidden_states.flip([1]), None if residual is None else residual.flip([1]))
+                hidden_states = hidden_states_f + hidden_states_b.flip([1])
+                residual = residual_f + residual_b.flip([1])
+
+        if not self.v.fused_add_norm:
+            if residual is None:
+                residual = hidden_states
+            else:
+                residual = residual + self.v.drop_path(hidden_states)
+            hidden_states = self.v.norm_f(residual.to(dtype=self.v.norm_f.weight.dtype))
+        else:
+            fused_add_norm_fn = rms_norm_fn if isinstance(self.v.norm_f, RMSNorm) else layer_norm_fn
+            hidden_states = fused_add_norm_fn(
+                self.v.drop_path(hidden_states),
+                self.v.norm_f.weight,
+                self.v.norm_f.bias,
+                eps=self.v.norm_f.eps,
+                residual=residual,
+                prenorm=False,
+                residual_in_fp32=self.v.residual_in_fp32,
+            )
+
+        x = self.v.norm_f(hidden_states)
+
+        # Average output of tokens within each 1-second segment
+        tokens_per_second = x.shape[1] // 60  
+        x_averaged = torch.stack([torch.mean(x[:, i * tokens_per_second:(i + 1) * tokens_per_second, :], dim=1) for i in range(60)], dim=1)
+        x_averaged = self.mlp_head(x_averaged)
+        return x_averaged
 
     def finetuningavgtok(self, x):
         B = x.shape[0]
@@ -652,6 +705,8 @@ class AMBAModel(nn.Module):
         # this is default for SSAMBA fine-tuning as during pretraining, supervision signal is given to each token, not the [cls] token
         if task == 'ft_avgtok':
             return self.finetuningavgtok(x)
+        elif task == 'ft_avgtok_1sec':
+            return self.finetuningavgtok_1sec(x)
         # alternatively, use the [cls] token output as clip-level representation.
         elif task == 'ft_cls':
             return self.finetuningcls(x)
@@ -856,6 +911,30 @@ class ASTModel(nn.Module):
     def gen_maskid_frame(self, sequence_len=512, mask_size=100):
         mask_id = random.sample(range(0, sequence_len), mask_size)
         return torch.tensor(mask_id)
+    
+    def finetuningavgtok_1sec(self, x):
+        B = x.shape[0]
+        x = self.v.patch_embed(x)
+        if self.cls_token_num == 2:
+            cls_tokens = self.v.cls_token.expand(B, -1, -1)
+            dist_token = self.v.dist_token.expand(B, -1, -1)
+            x = torch.cat((cls_tokens, dist_token, x), dim=1)
+        else:
+            cls_tokens = self.v.cls_token.expand(B, -1, -1)
+            x = torch.cat((cls_tokens, x), dim=1)
+        x = x + self.v.pos_embed
+        x = self.v.pos_drop(x)
+        
+        for blk_id, blk in enumerate(self.v.blocks):
+            x = blk(x)
+        x = self.v.norm(x)
+
+        # Average output of tokens within each 1-second segment
+        tokens_per_second = x.shape[1] // 60  
+        x_averaged = torch.stack([torch.mean(x[:, i * tokens_per_second:(i + 1) * tokens_per_second, :], dim=1) for i in range(60)], dim=1)
+        x_averaged = self.mlp_head(x_averaged)
+        return x_averaged
+        
 
     def finetuningavgtok(self, x):
         B = x.shape[0]
@@ -1064,6 +1143,8 @@ class ASTModel(nn.Module):
         # this is default for SSAST fine-tuning as during pretraining, supervision signal is given to each token, not the [cls] token
         if task == 'ft_avgtok':
             return self.finetuningavgtok(x)
+        elif task == 'ft_avgtok_1sec':
+            return self.finetuningavgtok_1sec(x)
         # alternatively, use the [cls] token output as clip-level representation.
         elif task == 'ft_cls':
             return self.finetuningcls(x)
