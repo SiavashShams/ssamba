@@ -1,11 +1,15 @@
 # SSAMBA: Self-Supervised Audio Mamba
 
-![icon](figures/amba.png)
+[![arXiv](https://img.shields.io/badge/arXiv-2405.11831-b31b1b.svg)](https://arxiv.org/abs/2405.11831)
 
+![icon](figures/amba.png)
 
 ⚠️ **Under Construction** ⚠️
 
 We will add recipes for fine-tuning on more datasets later. 🛠️ Stay tuned!!!
+
+## News
+- **[2024-07-01]**: Added a new task of dynamic audio scene labeling with 1 minute audio input from the Urban8k Sound dataset.
 
 
 ## Introduction
