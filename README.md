@@ -2,7 +2,7 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2405.11831-b31b1b.svg)](https://arxiv.org/abs/2405.11831)
 
-![icon](figures/amba.png)
+<img src="figures/amba.png" alt="icon" width="100" height="100">
 
 ⚠️ **Under Construction** ⚠️
 
