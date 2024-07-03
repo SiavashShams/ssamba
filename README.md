@@ -1,7 +1,7 @@
 # SSAMBA: Self-Supervised Audio Mamba
 
 [![arXiv](https://img.shields.io/badge/arXiv-2405.11831-b31b1b.svg)](https://arxiv.org/abs/2405.11831)
-[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Model-yellow)]([https://huggingface.co/attentionisallyouneed369/ssamba])
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Model-yellow)](https://huggingface.co/attentionisallyouneed369/ssamba)
 
 <img src="figures/amba.png" alt="icon" width="100" height="100">
 
