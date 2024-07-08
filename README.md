@@ -26,6 +26,10 @@ git clone https://github.com/SiavashShams/ssamba.git
 cd ssamba
 pip install -r requirements.txt
 ```
+Next, clone the Vision Mamba repository inside your ssamba directory:
+git clone https://github.com/hustvl/Vim.git
+
+If you encounter issues with `bimamba_type`, please refer to the steps outlined in this [GitHub issue comment](https://github.com/hustvl/Vim/issues/14#issuecomment-1964685563).
 
 ## Architecture
 
