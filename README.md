@@ -10,6 +10,7 @@
 We will add recipes for fine-tuning on more datasets later. 🛠️ Stay tuned!!!
 
 ## News
+- **[2024-07-16]**: Finetuning recipes for IEMOCAP, SCv1 and SCv2 datasets are added.
 - **[2024-07-01]**: Added a new task of dynamic audio scene labeling with 1 minute audio input from the Urban8k Sound dataset.
 - **[2024-05-20]**: Made our paper available on arXiv.
 
