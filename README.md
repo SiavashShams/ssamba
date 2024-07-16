@@ -68,7 +68,7 @@ The pretrained model weights for our SSAMBA model in sizes (base, small, and tin
 
 ## Finetuning
 
-### Audioset_20k and ESC-50
+### Audioset_20k, ESC-50 and Speech Commands V2:
 
 To finetune the pretrained SSAMBA on the balanced Audioset or ESC-50 datasets, follow these steps:
 
@@ -81,9 +81,14 @@ To finetune the pretrained SSAMBA on the balanced Audioset or ESC-50 datasets, f
      ```bash
      cd src/finetune/esc50
      ```
+   - For Speech Commands v2:
+     ```bash
+     cd src/finetune/speechcommands_v2
+     ```
+
 
 2. **Adjust the paths and hyperparameters:**
-   Edit `run_as_amba.sh` and `run_esc_patch_amba.sh`. Adjust the paths and hyperparameters as needed for your dataset.
+   Edit `run_as_amba.sh`, `run_esc_patch_amba.sh` and `run_sc_amba.sh`. Adjust the paths and hyperparameters as needed for your dataset.
 
 3. **Configure SLURM job submission (if using SLURM):**
    Add the models you want to finetune to `submit_jobs.sh`:
@@ -107,7 +112,7 @@ To finetune the pretrained SSAMBA on the balanced Audioset or ESC-50 datasets, f
 
 Make sure to monitor the jobs and adjust any parameters as needed to suit your specific requirements and hardware configuration.
 
-### VoxCeleb 
+### VoxCeleb and IEMOCAP
 
 ### Step 1: Install the SUPERB Package
 
@@ -133,8 +138,8 @@ Make sure to monitor the jobs and adjust any parameters as needed to suit your s
 
 ### Step 3: Adjust Paths and Specify Models
 
-1. **Edit the `run_sid.sh` file**:
-   - Adjust the paths in the `run_sid.sh` file to point to the correct directories for your dataset and model.
+1. **Edit the `run_sid.sh` or `run_er.sh` file**:
+   - Adjust the paths in the `run_sid.sh` or `run_er.sh` file to point to the correct directories for your dataset and model.
 
 2. **Specify models in `submit_jobs_amba.sh`**:
    - Edit the `submit_jobs_amba.sh` script to specify the models you want to fine-tune.
