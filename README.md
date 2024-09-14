@@ -10,6 +10,7 @@
 We will add recipes for fine-tuning on more datasets later. 🛠️ Stay tuned!!!
 
 ## News
+- **[2024-09-01]**: Paper accepted to IEEE Spoken Language Technology (SLT) Workshop 2024
 - **[2024-08-05]**: Looking for Contributors: Seeking help to implement a HuggingFace-compliant version of SSAMBA. Interested? Please reach out!
 - **[2024-07-16]**: Finetuning recipes for IEMOCAP, SCv1 and SCv2 datasets are added.
 - **[2024-07-01]**: Added a new task of dynamic audio scene labeling with 1 minute audio input from the Urban8k Sound dataset.
