@@ -5,10 +5,6 @@
 
 <img src="figures/amba.png" alt="icon" width="100" height="100">
 
-⚠️ **Under Construction** ⚠️
-
-We will add recipes for fine-tuning on more datasets later. 🛠️ Stay tuned!!!
-
 ## News
 - **[2024-09-01]**: Paper accepted to IEEE Spoken Language Technology (SLT) Workshop 2024
 - **[2024-08-05]**: Looking for Contributors: Seeking help to implement a HuggingFace-compliant version of SSAMBA. Interested? Please reach out!
